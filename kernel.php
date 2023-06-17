@@ -5,13 +5,13 @@ namespace Kernel;
 use Controller\Textarea;
 
 class Kernel {
-    private $selectedController = null;
-    private $selectedMethod = null;
+    private ?Textarea $selectedController = null;
+    private ?string $selectedMethod = null;
 
     /**
      * @var string rendered content
      */
-    private $render = '';
+    private string $render = '';
 
     /**
      * Select controller to process

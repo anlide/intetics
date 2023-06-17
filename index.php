@@ -1,6 +1,7 @@
 <?php
 error_reporting(E_ALL);
 
+include 'database.php';
 include 'Sender/ISender.php';
 include 'Sender/Sender.php';
 include 'Sender/Email.php';
@@ -10,6 +11,8 @@ include 'Controller.php';
 include 'Model.php';
 
 try {
+    database::connect();
+
     $kernel = new \Kernel\Kernel();
     $kernel->route();
 

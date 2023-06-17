@@ -1,0 +1,1 @@
+CREATE TABLE `intetics`.`textarea` ( `id_textarea` INT UNSIGNED NOT NULL AUTO_INCREMENT , `data` TEXT NOT NULL , PRIMARY KEY (`id_textarea`)) ENGINE = InnoDB;

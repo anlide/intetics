@@ -14,7 +14,9 @@ class Textarea {
     }
 
     public function insertToDatabase(): int {
-        // TODO: Implement it and return autoincrement value
-        return 0;
+        // TODO: Move database processing to some other place
+        \database::sql('INSERT INTO `textarea` (`data`) VALUES ("'.str_replace('"', '\"', $this->value).'");');
+
+        return \database::lastInsertId();
     }
 }
