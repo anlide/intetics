@@ -2,6 +2,8 @@
 
 namespace Controller;
 
+use Sender\Sender;
+
 class Textarea {
     private const placeholder = 'Enter any text';
 
@@ -33,7 +35,8 @@ class Textarea {
         // TODO: Use model here for 'value'
         $this->textarea = new \Model\Textarea();
         // TODO: escape input data
-        $this->textarea->setValue($_POST['textarea']);
+        $data = $_POST['textarea'];
+        $this->textarea->setValue($data);
         // TODO: Save data
         $errorText = '';
         try {
@@ -41,6 +44,15 @@ class Textarea {
             $errorText = 'Inserted: '.$autoIncrementValue;
         } catch (\Exception $exception) {
             $errorText = 'Not saved: '.$exception->getMessage();
+        }
+        try {
+
+            $senderType = (rand(0, 100) > 50) ? Sender::SENDER_TYPE_EMAIL : Sender::SENDER_TYPE_SMS;
+            $sender = Sender::getSender($senderType);
+            $sender->send($data);
+            $errorText .= ' | Sent via '.$sender->getType();
+        } catch (\Exception $exception) {
+            $errorText .= ' | Not sent: '.$exception->getMessage();
         }
         return [
             'placeholder' => self::placeholder,

@@ -1,6 +1,10 @@
 <?php
 error_reporting(E_ALL);
 
+include 'Sender/ISender.php';
+include 'Sender/Sender.php';
+include 'Sender/Email.php';
+include 'Sender/SMS.php';
 include 'kernel.php';
 include 'Controller.php';
 include 'Model.php';
