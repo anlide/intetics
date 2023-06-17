@@ -10,14 +10,14 @@
             <div>
                 <textarea
                         name="textarea"
-                        placeholder="<?=$placeholder?>"
+                        placeholder="<?=htmlspecialchars($placeholder)?>"
                         rows="10"
                         cols="50"
-                ><?=$value?></textarea>
+                ><?=htmlspecialchars($value)?></textarea>
             </div>
             <?php if ($error !== '') : ?>
             <div>
-                <?=$error?>
+                <?=htmlspecialchars($error)?>
             </div>
             <?php endif; ?>
             <div>
