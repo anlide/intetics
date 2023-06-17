@@ -2,7 +2,8 @@
 
 namespace Sender;
 
-class SMS implements ISender {
+class SMS implements ISender
+{
     public function send(string $data): void
     {
         // TODO: Implement send() method.

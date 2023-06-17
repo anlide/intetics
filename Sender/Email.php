@@ -2,7 +2,8 @@
 
 namespace Sender;
 
-class Email implements ISender {
+class Email implements ISender
+{
     public function send(string $data): void
     {
         // TODO: Implement send() method.

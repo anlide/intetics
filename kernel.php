@@ -4,7 +4,8 @@ namespace Kernel;
 
 use Controller\Textarea;
 
-class Kernel {
+class Kernel
+{
     private ?Textarea $selectedController = null;
     private ?string $selectedMethod = null;
 
@@ -27,7 +28,7 @@ class Kernel {
             $this->selectedMethod = 'submit';
         } else {
             throw new \Exception('Unknown route');
-    }
+        }
         // Execute selected controller+method
         $data = $this->selectedController->{$this->selectedMethod}();
         // Render data to related view (one view in this project)
@@ -37,16 +38,17 @@ class Kernel {
         }
         ob_start();
         // Render phtml file with variables
-        include ('view.phtml');
+        include('view.phtml');
         $this->render = ob_get_contents();
         ob_end_clean();
         // TODO: exception handler
     }
+
     /**
      * Return
      * @return string
      */
-    function __toString ()
+    function __toString()
     {
         return $this->render;
     }

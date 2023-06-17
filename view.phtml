@@ -4,31 +4,35 @@
     <title>Test task for Intetics</title>
 </head>
 <body>
-    <div>
-        <h1>Enter and submit text</h1>
-        <form action="/" method="post">
+<div>
+    <h1>Enter and submit text</h1>
+    <form action="/" method="post">
+        <div>
+            <input type="hidden" name="csrf" value="<?= /** @var string $csrf */
+            $csrf ?>">
             <div>
-                <input type="hidden" name="csrf" value="<?= /** @var string $csrf */$csrf?>">
-                <div>
-                    <label for="textarea">Text:</label>
-                </div>
-                <textarea
-                        id="textarea"
-                        name="textarea"
-                        placeholder="<?= /** @var string $placeholder */htmlspecialchars($placeholder)?>"
-                        rows="10"
-                        cols="50"
-                ><?= /** @var string $value */htmlspecialchars($value)?></textarea>
+                <label for="textarea">Text:</label>
             </div>
-            <?php /** @var string $error */if ($error !== '') : ?>
+            <textarea
+                    id="textarea"
+                    name="textarea"
+                    placeholder="<?= /** @var string $placeholder */
+                    htmlspecialchars($placeholder) ?>"
+                    rows="10"
+                    cols="50"
+            ><?= /** @var string $value */
+                htmlspecialchars($value) ?></textarea>
+        </div>
+        <?php /** @var string $error */
+        if ($error !== '') : ?>
             <div>
-                <?=htmlspecialchars($error)?>
+                <?= htmlspecialchars($error) ?>
             </div>
-            <?php endif; ?>
-            <div>
-                <input type="submit">
-            </div>
-        </form>
-    </div>
+        <?php endif; ?>
+        <div>
+            <input type="submit">
+        </div>
+    </form>
+</div>
 </body>
 </html>

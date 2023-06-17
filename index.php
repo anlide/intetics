@@ -19,6 +19,6 @@ try {
 
     print $kernel;
 } catch (\Exception $exception) {
-    error_log('Error: '.$exception->getMessage());
+    error_log('Error: ' . $exception->getMessage());
     print $exception->getMessage();
 }

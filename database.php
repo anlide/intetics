@@ -1,5 +1,7 @@
 <?php
-class database {
+
+class database
+{
     /**
      * @var mysqli|null
      */
@@ -8,7 +10,8 @@ class database {
     /**
      * @return void
      */
-    public static function connect(): void {
+    public static function connect(): void
+    {
         $config = [];
         $content = file_get_contents('.env');
         $lines = explode("\n", $content);
@@ -27,7 +30,8 @@ class database {
      * @param $sql
      * @return array
      */
-    public static function sql($sql): array {
+    public static function sql($sql): array
+    {
         $result = self::$mysqli->query($sql);
         if (!is_bool($result) && $result) {
             $data = $result->fetch_all(MYSQLI_ASSOC);
@@ -41,7 +45,8 @@ class database {
     /**
      * @return int
      */
-    public static function lastInsertId(): int {
+    public static function lastInsertId(): int
+    {
         return self::$mysqli->insert_id;
     }
 }
