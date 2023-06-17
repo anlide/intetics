@@ -14,6 +14,17 @@ class Textarea {
     private ?\Model\Textarea $textarea = null;
 
     /**
+     * TODO: It should be at some general code, not at controller
+     * @return string
+     */
+    private function getCsrf(): string {
+        if (!isset($_SESSION['csrf'])) {
+            $_SESSION['csrf'] = sha1(rand(0, PHP_INT_MAX));
+        }
+        return $_SESSION['csrf'];
+    }
+
+    /**
      * Provide data for render page with textarea
      * @return array
      */
@@ -24,6 +35,7 @@ class Textarea {
             'placeholder' => self::PLACEHOLDER,
             'value' => $this->textarea->getValue(),
             'error' => '',
+            'csrf' => $this->getCsrf(),
         ];
     }
 
@@ -39,6 +51,9 @@ class Textarea {
         $data = $_POST['textarea'];
         try {
             $this->textarea->setValue($data);
+            if ($_POST['csrf'] !== $this->getCsrf()) {
+                throw new \Exception('CSRF token wrong, try again');
+            }
             if (strlen($data) > self::STRING_LIMIT) {
                 throw new \Exception('String length should be less then '.self::STRING_LIMIT.' symbols');
             }
@@ -59,6 +74,7 @@ class Textarea {
             'placeholder' => self::PLACEHOLDER,
             'value' => $this->textarea->getValue(),
             'error' => $errorText,
+            'csrf' => $this->getCsrf(),
         ];
     }
 }

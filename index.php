@@ -11,6 +11,7 @@ include 'Controller.php';
 include 'Model.php';
 
 try {
+    session_start();
     database::connect();
 
     $kernel = new \Kernel\Kernel();
